@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>QIN Universe</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<style>
+@font-face {
+    font-family: Soledago;
+    src: url("font/Soledago.ttf");
+}
+@font-face {
+    font-family: InriaSans;
+    src: url("font/InriaSans-Regular.ttf");
+}
+</style>
+</head>
+
+<body>
+<header>
+  <p><img src="img/logo.png" alt="LOGO"> </p>
+  <ul>
+    <li><a href="#">Персонажи</a></li>
+    <li><a href="#">Истории</a></li>
+    <li><a href="#">Регионы</a></li>
+    <li><a href="#">Виды</a></li>
+    <li><a href="#">О вселенной</a></li>
+    <li><a href="#">О нас</a></li>
+  </ul>
+  <button id="toggle-cart" class="button">Избранное</button>
+</header>
+<section id="start">
+  <p>QIN Universe – проект, где каждый персонаж имеет свою историю. Множество регионов
+    с уникальными связями, а сюжет соединяет между собой звенья. <br><br>
+	Данный сайт собирает в себе всю информацию
+    о каждом мире, персонаже, регионе или истории. Данная работа коллективное творчества многих людей и собрала в себе. </p>
+</section>
+	<section id="info">
+    <div class="info-box"><h2>50</h2><p>Персонажей</p></div>
+    <div class="info-box"><h2>6</h2><p>Регионов</p></div>
+    <div class="info-box"><h2>20</h2><p>Видов</p></div>
+    <div class="info-box"><p>Сюжет закончен</p></div>
+</section>
+<section id="menu">
+  <h2>ПЕРСОНАЖИ</h2>
+  <div id="menu-items"> 
+    <!-- Menu items in Script --> 
+  </div>
+</section>
+<section id="race">
+  <h2>ВИДЫ</h2>
+  <div id="race-items"> 
+    <!-- Menu items in Script --> 
+  </div>
+</section>
+<section id="region">
+  <h2>РЕГИОНЫ</h2>
+  <div id="region-items"> 
+    <!-- Menu items in Script --> 
+  </div>
+</section>
+<footer class="textcols">
+  <div class="textcols-left" style="margin-top: 30px">
+    <p style="">Сайт разработан:<br>
+      Калинкиной Александрой<br>
+      Волик Алисой<br>
+      Петрушиной Евгенией</p>
+  </div>
+  <div class="textcols-middle" style="margin-top: 30px">
+    <p><img src="img/YouTube.png" alt="Изображение"> <img src="img/Tumblr.png" alt="Изображение" style=""> <img src="img/X.png" alt="Изображение" style=""> <img src="img/Telegram App.png" alt="Изображение" style=""> <img src="img/Discord New.png" alt="Изображение" style=""> </p>
+    <p>*Meta признана экстремистской организацией в России</p>
+  </div>
+  <div class="textcols-right" style="margin-top: 30px; text-align: right">
+    <p>Авторы QIN Universe:<br>
+      BlackCube<br>
+      ReGulus<br>
+      pickle</p>
+  </div>
+</footer>
+<script>
+const menuItems = [
+    {
+        id: 1,
+        name: "AВОН",
+        image: "img/pers_1.png",
+		link: "#"
+    },
+    {
+        id: 2,
+        name: "Рудольф Магнуссен",
+        image: "img/pers_2.png",
+		link: "#"
+    },
+    {
+        id: 3,
+        name: "Йохан Утенберг",
+        image: "img/pers_3.png",
+		link: "#"
+    },
+	{
+        id: 4,
+        name: "Джесси Де-Фокс",
+        image: "img/pers_4.png",
+		link: "#"
+    }
+];
+
+function populateMenu() {
+    const menuDiv = document.getElementById('menu-items');
+    menuItems.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'menu-item';
+        itemDiv.innerHTML = `
+            <button class="favorite-btn">
+                <svg class="star-icon" viewBox="0 0 24 24">
+                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
+                </svg>
+            </button>
+            <img src="${item.image}" alt="${item.name}">
+<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
+<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
+	</div>
+        `;
+        menuDiv.appendChild(itemDiv);
+    });
+	
+    const viewAllLink = document.createElement('a');
+    viewAllLink.href = "all-characters.html";
+    viewAllLink.className = "view-all";
+    viewAllLink.textContent = "Смотреть все";
+    menuDiv.appendChild(viewAllLink);
+	
+	document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const star = this.querySelector('.star-icon path');
+            if (star.getAttribute("fill") === "none") {
+                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
+            } else {
+                star.setAttribute("fill", "none"); // Очищаем звездочку
+            }
+        });
+    });
+	
+}       
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	const raceItems = [
+    {
+        id: 1,
+        name: "AВОН",
+        image: "img/pers_1.png",
+		link: "#"
+    },
+    {
+        id: 2,
+        name: "Рудольф Магнуссен",
+        image: "img/pers_2.png",
+		link: "#"
+    },
+    {
+        id: 3,
+        name: "Йохан Утенберг",
+        image: "img/pers_3.png",
+		link: "#"
+    },
+	{
+        id: 4,
+        name: "Джесси Де-Фокс",
+        image: "img/pers_4.png",
+		link: "#"
+    }
+];
+
+function populateRace() {
+    const raceDiv = document.getElementById('race-items');
+    raceItems.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'menu-item';
+        itemDiv.innerHTML = `
+            <button class="favorite-btn">
+                <svg class="star-icon" viewBox="0 0 24 24">
+                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
+                </svg>
+            </button>
+            <img src="${item.image}" alt="${item.name}">
+<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
+<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
+	</div>
+        `;
+        raceDiv.appendChild(itemDiv);
+    });
+	
+    const viewAllLink = document.createElement('a');
+    viewAllLink.href = "all-races.html";
+    viewAllLink.className = "view-all";
+    viewAllLink.textContent = "Смотреть все";
+    raceDiv.appendChild(viewAllLink);
+	
+		document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const star = this.querySelector('.star-icon path');
+            if (star.getAttribute("fill") === "none") {
+                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
+            } else {
+                star.setAttribute("fill", "none"); // Очищаем звездочку
+            }
+        });
+    });
+}       
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	const regionItems = [
+    {
+        id: 1,
+        name: "AВОН",
+        image: "img/region_1.png",
+		link: "#"
+    },
+    {
+        id: 2,
+        name: "Рудольф Магнуссен",
+        image: "img/region_1.png",
+		link: "#"
+    },
+    {
+        id: 3,
+        name: "Йохан Утенберг",
+        image: "img/region_1.png",
+		link: "#"
+    },
+	{
+        id: 4,
+        name: "Джесси Де-Фокс",
+        image: "img/region_1.png",
+		link: "#"
+    }
+];
+
+function populateRegion() {
+    const regionDiv = document.getElementById('region-items');
+    regionItems.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'menu-item';
+        itemDiv.innerHTML = `
+            <button class="favorite-btn">
+                <svg class="star-icon" viewBox="0 0 24 24">
+                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
+                </svg>
+            </button>
+            <img src="${item.image}" alt="${item.name}">
+<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
+<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
+	</div>
+        `;
+        regionDiv.appendChild(itemDiv);
+    });
+	
+    const viewAllLink = document.createElement('a');
+    viewAllLink.href = "all-characters.html";
+    viewAllLink.className = "view-all";
+    viewAllLink.textContent = "Смотреть все";
+    regionDiv.appendChild(viewAllLink);
+	
+		document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const star = this.querySelector('.star-icon path');
+            if (star.getAttribute("fill") === "none") {
+                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
+            } else {
+                star.setAttribute("fill", "none"); // Очищаем звездочку
+            }
+        });
+    });
+}       
+      // Populate region on page load
+window.addEventListener('load', populateMenu );
+window.addEventListener('load', populateRace );
+window.addEventListener('load', populateRegion );
+	
+    </script>
+</body>
+</html>
