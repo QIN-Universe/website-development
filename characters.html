@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>QIN Universe</title>
+<link rel="stylesheet" type="text/css" href="css/style_characters.css">
+<style>
+@font-face {
+    font-family: Soledago;
+    src: url("font/Soledago.ttf");
+}
+@font-face {
+    font-family: InriaSans;
+    src: url("font/InriaSans-Regular.ttf");
+}
+</style>
+</head>
+
+<body>
+<header>
+  <p><img src="img/logo.png" alt="LOGO"> </p>
+  <ul>
+    <li><a href="#">Персонажи</a></li>
+    <li><a href="#">Истории</a></li>
+    <li><a href="#">Регионы</a></li>
+    <li><a href="#">Виды</a></li>
+    <li><a href="#">О вселенной</a></li>
+    <li><a href="#">О нас</a></li>
+  </ul>
+  <button id="toggle-cart" class="button">Избранное</button>
+</header>
+	
+	 <h2>ПЕРСОНАЖИ</h2>
+	
+	<section id="filters" style="padding: 30px; font-family: InriaSans, sans-serif;">
+  <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
+	  <p>Поиск</p>
+    <input type="text" id="filter-name" placeholder="Поиск по имени" style="padding: 10px; width: 700px; border-radius: 20px; border-color: #362082">
+    
+<button id="filter-like" class="like-filter-button">
+  <svg class="star-icon" viewBox="0 0 24 24">
+    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"
+          fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  </svg>
+</button>
+
+<p>Пол:</p>
+    <select id="filter-sex" style="padding: 10px; width: 340px; border-radius: 20px; border-color: #362082">
+      <option value="">Пол</option>
+      <option value="Мужской">Мужской</option>
+      <option value="Женский">Женский</option>
+    </select>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 25px; margin-top: 20px;">
+	  <p>Вид:</p>
+    <select id="filter-race" style="padding: 10px; width: 340px; border-radius: 20px; border-color: #362082">
+      <option value="">Раса</option>
+      <option value="Человек">Человек</option>
+      <option value="Эльф">Эльф</option>
+    </select>
+<p>Находится:</p>
+    <select id="filter-region" style="padding: 10px; width: 340px; border-radius: 20px; border-color: #362082">
+      <option value="">Регион</option>
+      <option value="Север">Север</option>
+      <option value="Юг">Юг</option>
+    </select>
+<p>Автор:</p>
+    <select id="filter-author" style="padding: 10px; width: 340px; border-radius: 20px; border-color: #362082">
+      <option value="">Автор</option>
+      <option value="BlackCube">BlackCube</option>
+      <option value="ReGulus">ReGulus</option>
+      <option value="pickle">pickle</option>
+    </select>
+  </div>
+</section>
+
+
+<section id="menu">
+  <div id="menu-items"> 
+    <!-- Menu items in Script --> 
+  </div>
+</section>
+
+<footer class="textcols">
+  <div class="textcols-left" style="margin-top: 30px">
+    <p style="">Сайт разработан:<br>
+      Калинкиной Александрой<br>
+      Волик Алисой<br>
+      Петрушиной Евгенией</p>
+  </div>
+  <div class="textcols-middle" style="margin-top: 30px">
+    <p><img src="img/YouTube.png" alt="Изображение"> <img src="img/Tumblr.png" alt="Изображение" style=""> <img src="img/X.png" alt="Изображение" style=""> <img src="img/Telegram App.png" alt="Изображение" style=""> <img src="img/Discord New.png" alt="Изображение" style=""> </p>
+    <p>*Meta признана экстремистской организацией в России</p>
+  </div>
+  <div class="textcols-right" style="margin-top: 30px; text-align: right">
+    <p>Авторы QIN Universe:<br>
+      BlackCube<br>
+      ReGulus<br>
+      pickle</p>
+  </div>
+</footer>
+<script>
+const menuItems = [
+  {
+    id: 1,
+    name: "AВОН",
+    image: "img/pers_1.png",
+    link: "#",
+    race: "Человек",
+    region: "Север",
+    sex: "Мужской",
+    author: "BlackCube",
+    like: 1
+  },
+  {
+    id: 2,
+    name: "Рудольф Магнуссен",
+    image: "img/pers_2.png",
+    link: "#",
+    race: "Эльф",
+    region: "Юг",
+    sex: "Мужской",
+    author: "ReGulus",
+    like: 0
+  },
+  {
+    id: 3,
+    name: "Йохан Утенберг",
+    image: "img/pers_3.png",
+    link: "#",
+    race: "Человек",
+    region: "Север",
+    sex: "Мужской",
+    author: "pickle",
+    like: 1
+  },
+  {
+    id: 4,
+    name: "Джесси Де-Фокс",
+    image: "img/pers_4.png",
+    link: "#",
+    race: "Эльф",
+    region: "Юг",
+    sex: "Женский",
+    author: "ReGulus",
+    like: 0
+  },
+  {
+    id: 4,
+    name: "Джесси Де-Фокс",
+    image: "img/pers_4.png",
+    link: "#",
+    race: "Эльф",
+    region: "Юг",
+    sex: "Женский",
+    author: "ReGulus",
+    like: 0
+  }
+];
+
+let showOnlyLiked = false;
+
+function populateMenu() {
+  const menuDiv = document.getElementById('menu-items');
+  menuDiv.innerHTML = "";
+
+  const name = document.getElementById('filter-name').value.toLowerCase();
+  const sex = document.getElementById('filter-sex').value;
+  const race = document.getElementById('filter-race').value;
+  const region = document.getElementById('filter-region').value;
+  const author = document.getElementById('filter-author').value;
+
+  const filteredItems = menuItems.filter(item => {
+    return (!name || item.name.toLowerCase().includes(name)) &&
+           (!sex || item.sex === sex) &&
+           (!race || item.race === race) &&
+           (!region || item.region === region) &&
+           (!author || item.author === author) &&
+           (!showOnlyLiked || item.like === 1);
+  });
+
+  filteredItems.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'menu-item';
+    itemDiv.innerHTML = `
+      <button class="favorite-btn">
+        <svg class="star-icon" viewBox="0 0 24 24">
+          <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" 
+                fill="${item.like ? '#795CC6' : 'none'}" stroke="#795CC6" stroke-width="2"/>
+        </svg>
+      </button>
+      <img src="${item.image}" alt="${item.name}">
+      <div class="rectangle" style="height: 50px;width: 300px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
+        <p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
+      </div>
+    `;
+    menuDiv.appendChild(itemDiv);
+  });
+
+  // Кнопки избранного внутри карточек
+  document.querySelectorAll('.favorite-btn').forEach((button, index) => {
+    button.addEventListener('click', function () {
+      const item = filteredItems[index];
+      item.like = item.like ? 0 : 1;
+      populateMenu();
+    });
+  });
+}
+
+// Обработчики
+document.addEventListener('DOMContentLoaded', () => {
+  const controls = ['filter-name', 'filter-sex', 'filter-race', 'filter-region', 'filter-author'];
+  controls.forEach(id => {
+    document.getElementById(id).addEventListener('input', populateMenu);
+    document.getElementById(id).addEventListener('change', populateMenu);
+  });
+
+  document.getElementById('filter-like').addEventListener('click', () => {
+    showOnlyLiked = !showOnlyLiked;
+    const star = document.querySelector('#filter-like .star-icon path');
+    star.setAttribute('fill', showOnlyLiked ? '#FFFFFF' : 'none');
+    populateMenu();
+  });
+
+  populateMenu();
+});
+</script>
+
+
+</body>
+</html>
