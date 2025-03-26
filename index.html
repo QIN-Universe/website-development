@@ -20,14 +20,14 @@
 <header>
   <p><img src="img/logo.png" alt="LOGO"> </p>
   <ul>
-    <li><a href="#">Персонажи</a></li>
+    <li><a href="characters.html">Персонажи</a></li>
     <li><a href="#">Истории</a></li>
     <li><a href="#">Регионы</a></li>
     <li><a href="#">Виды</a></li>
     <li><a href="#">О вселенной</a></li>
     <li><a href="#">О нас</a></li>
   </ul>
-  <button id="toggle-cart" class="button">Избранное</button>
+  <a href="like.html"><button id="toggle-cart" class="button">Избранное</button></a>
 </header>
 <section id="start">
   <p>QIN Universe – проект, где каждый персонаж имеет свою историю. Множество регионов
@@ -43,31 +43,25 @@
 </section>
 <section id="menu">
   <h2>ПЕРСОНАЖИ</h2>
-  <div id="menu-items"> 
-    <!-- Menu items in Script --> 
-  </div>
+  <div id="menu-items"></div>
 </section>
 <section id="race">
   <h2>ВИДЫ</h2>
-  <div id="race-items"> 
-    <!-- Menu items in Script --> 
-  </div>
+  <div id="race-items"></div>
 </section>
 <section id="region">
   <h2>РЕГИОНЫ</h2>
-  <div id="region-items"> 
-    <!-- Menu items in Script --> 
-  </div>
+  <div id="region-items"></div>
 </section>
 <footer class="textcols">
   <div class="textcols-left" style="margin-top: 30px">
-    <p style="">Сайт разработан:<br>
+    <p>Сайт разработан:<br>
       Калинкиной Александрой<br>
       Волик Алисой<br>
       Петрушиной Евгенией</p>
   </div>
   <div class="textcols-middle" style="margin-top: 30px">
-    <p><img src="img/YouTube.png" alt="Изображение"> <img src="img/Tumblr.png" alt="Изображение" style=""> <img src="img/X.png" alt="Изображение" style=""> <img src="img/Telegram App.png" alt="Изображение" style=""> <img src="img/Discord New.png" alt="Изображение" style=""> </p>
+    <p><img src="img/YouTube.png" alt="Изображение"> <img src="img/Tumblr.png" alt="Изображение"> <img src="img/X.png" alt="Изображение"> <img src="img/Telegram App.png" alt="Изображение"> <img src="img/Discord New.png" alt="Изображение"></p>
     <p>*Meta признана экстремистской организацией в России</p>
   </div>
   <div class="textcols-right" style="margin-top: 30px; text-align: right">
@@ -77,206 +71,73 @@
       pickle</p>
   </div>
 </footer>
-<script>
-const menuItems = [
-    {
-        id: 1,
-        name: "AВОН",
-        image: "img/pers_1.png",
-		link: "#"
-    },
-    {
-        id: 2,
-        name: "Рудольф Магнуссен",
-        image: "img/pers_2.png",
-		link: "#"
-    },
-    {
-        id: 3,
-        name: "Йохан Утенберг",
-        image: "img/pers_3.png",
-		link: "#"
-    },
-	{
-        id: 4,
-        name: "Джесси Де-Фокс",
-        image: "img/pers_4.png",
-		link: "#"
-    }
-];
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-function populateMenu() {
-    const menuDiv = document.getElementById('menu-items');
-    menuItems.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'menu-item';
-        itemDiv.innerHTML = `
-            <button class="favorite-btn">
-                <svg class="star-icon" viewBox="0 0 24 24">
-                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
-                </svg>
-            </button>
-            <img src="${item.image}" alt="${item.name}">
-<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
-<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
-	</div>
-        `;
-        menuDiv.appendChild(itemDiv);
-    });
-	
-    const viewAllLink = document.createElement('a');
-    viewAllLink.href = "all-characters.html";
-    viewAllLink.className = "view-all";
-    viewAllLink.textContent = "Смотреть все";
-    menuDiv.appendChild(viewAllLink);
-	
-	document.querySelectorAll('.favorite-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            const star = this.querySelector('.star-icon path');
-            if (star.getAttribute("fill") === "none") {
-                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
-            } else {
-                star.setAttribute("fill", "none"); // Очищаем звездочку
-            }
-        });
-    });
-	
-}       
+const supabaseUrl = "https://lwrcymzsfwgglbvlkdjs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmN5bXpzZndnZ2xidmxrZGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1NDg2OTAsImV4cCI6MjA1ODEyNDY5MH0.SPytA4M5Fz61U2c9BIupVNAVNoPuZfYYALNrvZYJzb4";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	const raceItems = [
-    {
-        id: 1,
-        name: "AВОН",
-        image: "img/pers_1.png",
-		link: "#"
-    },
-    {
-        id: 2,
-        name: "Рудольф Магнуссен",
-        image: "img/pers_2.png",
-		link: "#"
-    },
-    {
-        id: 3,
-        name: "Йохан Утенберг",
-        image: "img/pers_3.png",
-		link: "#"
-    },
-	{
-        id: 4,
-        name: "Джесси Де-Фокс",
-        image: "img/pers_4.png",
-		link: "#"
-    }
-];
+function createCard(name, image) {
+  return `
+    <button class="favorite-btn">
+      <svg class="star-icon" viewBox="0 0 24 24">
+        <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
+      </svg>
+    </button>
+    <img src="${image || 'https://via.placeholder.com/300x400'}" alt="${name}">
+    <div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6; border-radius: 0px 0px 60px 60px; margin-top:-60px;">
+      <p style="margin-top:10px;margin-left:30px;">${name}</p>
+    </div>
+  `;
+}
 
-function populateRace() {
-    const raceDiv = document.getElementById('race-items');
-    raceItems.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'menu-item';
-        itemDiv.innerHTML = `
-            <button class="favorite-btn">
-                <svg class="star-icon" viewBox="0 0 24 24">
-                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
-                </svg>
-            </button>
-            <img src="${item.image}" alt="${item.name}">
-<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
-<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
-	</div>
-        `;
-        raceDiv.appendChild(itemDiv);
-    });
-	
-    const viewAllLink = document.createElement('a');
-    viewAllLink.href = "all-races.html";
-    viewAllLink.className = "view-all";
-    viewAllLink.textContent = "Смотреть все";
-    raceDiv.appendChild(viewAllLink);
-	
-		document.querySelectorAll('.favorite-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            const star = this.querySelector('.star-icon path');
-            if (star.getAttribute("fill") === "none") {
-                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
-            } else {
-                star.setAttribute("fill", "none"); // Очищаем звездочку
-            }
-        });
-    });
-}       
-	
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	const regionItems = [
-    {
-        id: 1,
-        name: "AВОН",
-        image: "img/region_1.png",
-		link: "#"
-    },
-    {
-        id: 2,
-        name: "Рудольф Магнуссен",
-        image: "img/region_1.png",
-		link: "#"
-    },
-    {
-        id: 3,
-        name: "Йохан Утенберг",
-        image: "img/region_1.png",
-		link: "#"
-    },
-	{
-        id: 4,
-        name: "Джесси Де-Фокс",
-        image: "img/region_1.png",
-		link: "#"
-    }
-];
+async function populateFromSupabase(table, nameField, imageField, containerId, linkHref) {
+  const container = document.getElementById(containerId);
+  const { data, error } = await supabase.from(table).select(`${nameField}, ${imageField}`);
 
-function populateRegion() {
-    const regionDiv = document.getElementById('region-items');
-    regionItems.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'menu-item';
-        itemDiv.innerHTML = `
-            <button class="favorite-btn">
-                <svg class="star-icon" viewBox="0 0 24 24">
-                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
-                </svg>
-            </button>
-            <img src="${item.image}" alt="${item.name}">
-<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
-<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
-	</div>
-        `;
-        regionDiv.appendChild(itemDiv);
+  if (error) {
+    console.error(`Ошибка загрузки из таблицы ${table}:`, error);
+    return;
+  }
+
+  data.forEach(item => {
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "menu-item";
+    itemDiv.innerHTML = createCard(item[nameField], item[imageField]);
+    container.appendChild(itemDiv);
+  });
+
+  const viewAllLink = document.createElement("a");
+  viewAllLink.href = linkHref;
+  viewAllLink.className = "view-all";
+  viewAllLink.textContent = "Смотреть все";
+  container.appendChild(viewAllLink);
+
+  document.querySelectorAll('.favorite-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const star = this.querySelector('.star-icon path');
+      
+      const isFilled = star.getAttribute("fill") !== "none";
+      star.setAttribute("fill", isFilled ? "none" : "#795CC6");
+      const name = this.nextElementSibling.alt;
+      let liked = JSON.parse(localStorage.getItem("likedCharacters") || "[]");
+      if (!isFilled) {
+        liked.push(name);
+      } else {
+        liked = liked.filter(i => i !== name);
+      }
+      localStorage.setItem("likedCharacters", JSON.stringify(liked));
+    
     });
-	
-    const viewAllLink = document.createElement('a');
-    viewAllLink.href = "all-characters.html";
-    viewAllLink.className = "view-all";
-    viewAllLink.textContent = "Смотреть все";
-    regionDiv.appendChild(viewAllLink);
-	
-		document.querySelectorAll('.favorite-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            const star = this.querySelector('.star-icon path');
-            if (star.getAttribute("fill") === "none") {
-                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
-            } else {
-                star.setAttribute("fill", "none"); // Очищаем звездочку
-            }
-        });
-    });
-}       
-      // Populate region on page load
-window.addEventListener('load', populateMenu );
-window.addEventListener('load', populateRace );
-window.addEventListener('load', populateRegion );
-	
-    </script>
+  });
+}
+
+window.addEventListener('load', () => {
+  populateFromSupabase("персонаж", "имя", "изображение", "menu-items", "all-characters.html");
+  populateFromSupabase("вид", "название_расы", "изображение", "race-items", "all-races.html");
+  populateFromSupabase("регион", "название_региона", "изображение", "region-items", "all-regions.html");
+});
+</script>
 </body>
 </html>
