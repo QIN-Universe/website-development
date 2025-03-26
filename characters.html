@@ -29,22 +29,22 @@
   </ul>
   <button id="toggle-cart" class="button">Избранное</button>
 </header>
-	
-	 <h2>ПЕРСОНАЖИ</h2>
-	
-	<section id="filters" style="padding: 30px; font-family: InriaSans, sans-serif;">
+
+<h2>ПЕРСОНАЖИ</h2>
+
+<section id="filters" style="padding: 30px; font-family: InriaSans, sans-serif;">
   <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
-	  <p>Поиск</p>
+    <p>Поиск</p>
     <input type="text" id="filter-name" placeholder="Поиск по имени" style="padding: 10px; width: 700px; border-radius: 20px; border-color: #362082">
     
-<button id="filter-like" class="like-filter-button">
-  <svg class="star-icon" viewBox="0 0 24 24">
-    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"
-          fill="none" stroke="#FFFFFF" stroke-width="2"/>
-  </svg>
-</button>
+    <button id="filter-like" class="like-filter-button">
+      <svg class="star-icon" viewBox="0 0 24 24">
+        <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"
+              fill="none" stroke="#FFFFFF" stroke-width="2"/>
+      </svg>
+    </button>
 
-<p>Пол:</p>
+    <p>Пол:</p>
     <select id="filter-sex" style="padding: 10px; width: 340px; border-radius: 20px; border-color: #362082">
       <option value="">Пол</option>
       <option value="Мужской">Мужской</option>
@@ -53,44 +53,34 @@
   </div>
 
   <div style="display: flex; flex-wrap: wrap; gap: 25px; margin-top: 20px;">
-	  <p>Вид:</p>
+    <p>Вид:</p>
     <select id="filter-race" style="padding: 10px; width: 340px; border-radius: 20px; border-color: #362082">
       <option value="">Раса</option>
-      <option value="Человек">Человек</option>
-      <option value="Эльф">Эльф</option>
     </select>
-<p>Находится:</p>
+    <p>Находится:</p>
     <select id="filter-region" style="padding: 10px; width: 340px; border-radius: 20px; border-color: #362082">
       <option value="">Регион</option>
-      <option value="Север">Север</option>
-      <option value="Юг">Юг</option>
     </select>
-<p>Автор:</p>
+    <p>Автор:</p>
     <select id="filter-author" style="padding: 10px; width: 340px; border-radius: 20px; border-color: #362082">
       <option value="">Автор</option>
-      <option value="BlackCube">BlackCube</option>
-      <option value="ReGulus">ReGulus</option>
-      <option value="pickle">pickle</option>
     </select>
   </div>
 </section>
 
-
 <section id="menu">
-  <div id="menu-items"> 
-    <!-- Menu items in Script --> 
-  </div>
+  <div id="menu-items"></div>
 </section>
 
 <footer class="textcols">
   <div class="textcols-left" style="margin-top: 30px">
-    <p style="">Сайт разработан:<br>
+    <p>Сайт разработан:<br>
       Калинкиной Александрой<br>
       Волик Алисой<br>
       Петрушиной Евгенией</p>
   </div>
   <div class="textcols-middle" style="margin-top: 30px">
-    <p><img src="img/YouTube.png" alt="Изображение"> <img src="img/Tumblr.png" alt="Изображение" style=""> <img src="img/X.png" alt="Изображение" style=""> <img src="img/Telegram App.png" alt="Изображение" style=""> <img src="img/Discord New.png" alt="Изображение" style=""> </p>
+    <p><img src="img/YouTube.png" alt="YouTube"> <img src="img/Tumblr.png" alt="Tumblr"> <img src="img/X.png" alt="X"> <img src="img/Telegram App.png" alt="Telegram"> <img src="img/Discord New.png" alt="Discord"></p>
     <p>*Meta признана экстремистской организацией в России</p>
   </div>
   <div class="textcols-right" style="margin-top: 30px; text-align: right">
@@ -100,66 +90,57 @@
       pickle</p>
   </div>
 </footer>
-<script>
-const menuItems = [
-  {
-    id: 1,
-    name: "AВОН",
-    image: "img/pers_1.png",
-    link: "#",
-    race: "Человек",
-    region: "Север",
-    sex: "Мужской",
-    author: "BlackCube",
-    like: 1
-  },
-  {
-    id: 2,
-    name: "Рудольф Магнуссен",
-    image: "img/pers_2.png",
-    link: "#",
-    race: "Эльф",
-    region: "Юг",
-    sex: "Мужской",
-    author: "ReGulus",
-    like: 0
-  },
-  {
-    id: 3,
-    name: "Йохан Утенберг",
-    image: "img/pers_3.png",
-    link: "#",
-    race: "Человек",
-    region: "Север",
-    sex: "Мужской",
-    author: "pickle",
-    like: 1
-  },
-  {
-    id: 4,
-    name: "Джесси Де-Фокс",
-    image: "img/pers_4.png",
-    link: "#",
-    race: "Эльф",
-    region: "Юг",
-    sex: "Женский",
-    author: "ReGulus",
-    like: 0
-  },
-  {
-    id: 4,
-    name: "Джесси Де-Фокс",
-    image: "img/pers_4.png",
-    link: "#",
-    race: "Эльф",
-    region: "Юг",
-    sex: "Женский",
-    author: "ReGulus",
-    like: 0
-  }
-];
 
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const supabaseUrl = "https://lwrcymzsfwgglbvlkdjs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmN5bXpzZndnZ2xidmxrZGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1NDg2OTAsImV4cCI6MjA1ODEyNDY5MH0.SPytA4M5Fz61U2c9BIupVNAVNoPuZfYYALNrvZYJzb4";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+let allCharacters = [];
 let showOnlyLiked = false;
+let likedIds = new Set();
+
+async function fetchCharacters() {
+  const { data, error } = await supabase
+    .from("персонаж")
+    .select(`
+      код_персонажа,
+      имя,
+      пол,
+      изображение,
+      вид (название_расы),
+      регион (название_региона),
+      автор (ник_автора),
+      вселенные (название_вселенной)
+    `);
+
+  if (error) {
+    console.error("Ошибка загрузки:", error.message);
+    return;
+  }
+
+  const seen = new Set();
+  allCharacters = data
+    .map(char => ({
+      id: char.код_персонажа,
+      name: char.имя,
+      sex: char.пол,
+      image: char.изображение || "",
+      race: char.вид?.название_расы || "",
+      region: char.регион?.название_региона || "",
+      author: char.автор?.ник_автора || "",
+      universe: char.вселенные?.название_вселенной || ""
+    }))
+    .filter(char => {
+      if (seen.has(char.id)) return false;
+      seen.add(char.id);
+      return true;
+    });
+
+  populateMenu();
+}
 
 function populateMenu() {
   const menuDiv = document.getElementById('menu-items');
@@ -171,47 +152,62 @@ function populateMenu() {
   const region = document.getElementById('filter-region').value;
   const author = document.getElementById('filter-author').value;
 
-  const filteredItems = menuItems.filter(item => {
+  const filtered = allCharacters.filter(item => {
     return (!name || item.name.toLowerCase().includes(name)) &&
            (!sex || item.sex === sex) &&
            (!race || item.race === race) &&
            (!region || item.region === region) &&
            (!author || item.author === author) &&
-           (!showOnlyLiked || item.like === 1);
+           (!showOnlyLiked || likedIds.has(item.id));
   });
 
-  filteredItems.forEach(item => {
+  filtered.forEach(item => {
+    const isLiked = likedIds.has(item.id);
     const itemDiv = document.createElement('div');
     itemDiv.className = 'menu-item';
     itemDiv.innerHTML = `
-      <button class="favorite-btn">
+      <button class="favorite-btn" data-id="${item.id}">
         <svg class="star-icon" viewBox="0 0 24 24">
           <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" 
-                fill="${item.like ? '#795CC6' : 'none'}" stroke="#795CC6" stroke-width="2"/>
+            fill="${isLiked ? '#795CC6' : 'none'}" stroke="#795CC6" stroke-width="2"/>
         </svg>
       </button>
       <img src="${item.image}" alt="${item.name}">
       <div class="rectangle" style="height: 50px;width: 300px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
-        <p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
+        <p style="margin-top:10px;margin-left:30px;">${item.name}</p>
       </div>
     `;
     menuDiv.appendChild(itemDiv);
   });
 
-  // Кнопки избранного внутри карточек
-  document.querySelectorAll('.favorite-btn').forEach((button, index) => {
-    button.addEventListener('click', function () {
-      const item = filteredItems[index];
-      item.like = item.like ? 0 : 1;
+  document.querySelectorAll('.favorite-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const id = parseInt(button.getAttribute('data-id'));
+      likedIds.has(id) ? likedIds.delete(id) : likedIds.add(id);
       populateMenu();
     });
   });
 }
 
-// Обработчики
+async function loadFilterOptions(table, labelField, selectId) {
+  const { data, error } = await supabase.from(table).select(labelField);
+  if (error) {
+    console.error(`Ошибка при загрузке ${table}:`, error);
+    return;
+  }
+
+  const select = document.getElementById(selectId);
+  const unique = [...new Set(data.map(item => item[labelField]))];
+  unique.forEach(value => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = value;
+    select.appendChild(option);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  const controls = ['filter-name', 'filter-sex', 'filter-race', 'filter-region', 'filter-author'];
-  controls.forEach(id => {
+  ['filter-name', 'filter-sex', 'filter-race', 'filter-region', 'filter-author'].forEach(id => {
     document.getElementById(id).addEventListener('input', populateMenu);
     document.getElementById(id).addEventListener('change', populateMenu);
   });
@@ -223,10 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
     populateMenu();
   });
 
-  populateMenu();
+  loadFilterOptions("вид", "название_расы", "filter-race");
+  loadFilterOptions("регион", "название_региона", "filter-region");
+  loadFilterOptions("автор", "ник_автора", "filter-author");
+
+  fetchCharacters();
 });
 </script>
-
-
 </body>
 </html>
