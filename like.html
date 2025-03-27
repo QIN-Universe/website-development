@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Избранное | QIN Universe</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @font-face {
+      font-family: Soledago;
+      src: url("font/Soledago.ttf");
+    }
+    @font-face {
+      font-family: InriaSans;
+      src: url("font/InriaSans-Regular.ttf");
+    }
+  </style>
+</head>
+<body>
+<header>
+  <p><img src="img/logo.png" alt="LOGO"></p>
+  <ul>
+    <li><a href="characters.html">Персонажи</a></li>
+    <li><a href="#">Истории</a></li>
+    <li><a href="regions.html">Регионы</a></li>
+    <li><a href="#">Виды</a></li>
+    <li><a href="#">О вселенной</a></li>
+    <li><a href="#">О нас</a></li>
+  </ul>
+  <a href="like.html"><button id="toggle-cart" class="button">Избранное</button></a>
+</header>
+
+<h2 class="title">ИЗБРАННОЕ</h2>
+
+<section id="favorites">
+  <h3>Персонажи</h3>
+  <div id="menu-items" class="card-grid"></div>
+  <p id="empty-message" style="text-align:center; color:gray; margin-top: 40px;">Здесь ещё ничего не добавлено :(</p>
+
+  <h3>Регионы</h3>
+  <div id="favorite-regions" class="card-grid"></div>
+  <p id="empty-message" style="text-align:center; color:gray; margin-top: 40px;">Здесь ещё ничего не добавлено :(</p>
+
+  <h3>Статьи</h3>
+  <div id="favorite-articles" class="card-grid"></div>
+  <p id="empty-message" style="text-align:center; color:gray; margin-top: 40px;">Здесь ещё ничего не добавлено :(</p>
+</section>
+
+<footer class="textcols">
+  <div class="textcols-left">
+    <p>Сайт разработан:<br>
+      Калинкиной Александрой<br>
+      Волик Алисой<br>
+      Петрушиной Евгенией</p>
+  </div>
+  <div class="textcols-middle">
+    <p><img src="img/YouTube.png"> <img src="img/Tumblr.png"> <img src="img/X.png"> <img src="img/Telegram App.png"> <img src="img/Discord New.png"></p>
+    <p>*Meta признана экстремистской организацией в России</p>
+  </div>
+  <div class="textcols-right" style="text-align:right">
+    <p>Авторы QIN Universe:<br>
+      BlackCube<br>
+      ReGulus<br>
+      pickle</p>
+  </div>
+</footer>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const supabaseUrl = 'https://lwrcymzsfwgglbvlkdjs.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmN5bXpzZndnZ2xidmxrZGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1NDg2OTAsImV4cCI6MjA1ODEyNDY5MH0.SPytA4M5Fz61U2c9BIupVNAVNoPuZfYYALNrvZYJzb4';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const favorites = {
+  персонажи: JSON.parse(localStorage.getItem('likedCharacters') || '[]'),
+  регионы: JSON.parse(localStorage.getItem('likedRegions') || '[]'),
+  статьи: JSON.parse(localStorage.getItem('likedArticles') || '[]')
+};
+
+function createCard(name, image) {
+  return `
+    <div class="menu-item">
+      <img src="${image || 'https://via.placeholder.com/300x400'}" alt="${name}">
+      <div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;border-radius: 0px 0px 60px 60px;margin-top:-60px;">
+        <p style="margin-top:10px;margin-left:30px;">${name}</p>
+      </div>
+    </div>
+  `;
+}
+
+async function loadFavorites() {
+  const charContainer = document.getElementById("menu-items");
+  const regContainer = document.getElementById("favorite-regions");
+  const artContainer = document.getElementById("favorite-articles");
+  const empty = document.getElementById("empty-message");
+
+  let hasData = false;
+
+  if (favorites.персонажи.length > 0) {
+    const { data } = await supabase.from('персонаж').select('*').in('код_персонажа', favorites.персонажи);
+    data.forEach(c => charContainer.innerHTML += createCard(c.имя, c.изображение));
+    hasData = true;
+  }
+
+  if (favorites.регионы.length > 0) {
+    const { data } = await supabase.from('регион').select('*').in('код_региона', favorites.регионы);
+    data.forEach(r => regContainer.innerHTML += createCard(r.название_региона, r.изображение));
+    hasData = true;
+  }
+
+  if (favorites.статьи.length > 0) {
+    const { data } = await supabase.from('статья').select('*').in('код_статьи', favorites.статьи);
+    data.forEach(a => artContainer.innerHTML += createCard(a.название, a.изображение));
+    hasData = true;
+  }
+
+  if (hasData) empty.style.display = 'none';
+}
+
+window.addEventListener("DOMContentLoaded", loadFavorites);
+</script>
+</body>
+</html>
