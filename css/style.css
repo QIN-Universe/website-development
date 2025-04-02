@@ -11,6 +11,7 @@ header {
   flex-wrap: wrap;
   align-items: center;
   background-color: #362082;
+  padding: 20px 70px;
 }
 ul {
   margin-left: -50px;
@@ -32,7 +33,7 @@ ul li a:hover {
   text-decoration: none;
 }
 #toggle-cart {
-  margin-left: 300px;
+  margin-left: 200px;
 }
 header button {
   width: 180px;
@@ -72,6 +73,12 @@ header button:active {
 	margin-left:auto;
 	padding-right: 100px;
 	margin-top: auto;
+}
+
+#start strong {
+  font-family: HipPocket, sans-serif;
+  font-size: 24px;
+  color: #795CC6;
 }
 
 #info {
@@ -261,4 +268,74 @@ footer p {
 }
 footer img {
   width: 60px;
+}
+
+#contact-form {
+  margin: 100px auto;
+  max-width: 940px;
+  padding: 0 50px;
+}
+
+.contact-title {
+  font-family: Soledago, sans-serif;
+  font-size: 48px;
+  color: #362082;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.contact-left {
+  flex: 1;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-left label {
+  font-family: InriaSans, sans-serif;
+  font-size: 18px;
+  color: black;
+}
+
+.contact-left input,
+.contact-left textarea {
+  font-family: InriaSans, sans-serif;
+  font-size: 16px;
+  border: 1px solid #795CC6;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #795CC6;
+  outline: none;
+  resize: none;
+}
+
+.contact-left input::placeholder,
+.contact-left textarea::placeholder {
+  color: #795CC6;
+}
+
+.contact-left textarea {
+  height: 150px;
+}
+
+.contact-right {
+  flex: 1;
+  min-width: 300px;
+  font-family: InriaSans, sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.contact-right strong {
+  font-family: HipPocket, sans-serif;
+  font-size: 24px;
+  color: #795CC6;
 }
