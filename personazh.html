@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>QIN Universe</title>
+<link rel="stylesheet" type="text/css" href="css/style_personazh.css">
+<style>
+@font-face {
+    font-family: Soledago;
+    src: url("font/Soledago.ttf");
+}
+@font-face {
+    font-family: InriaSans;
+    src: url("font/InriaSans-Regular.ttf");
+}
+@font-face {
+    font-family: HipPocket;
+    src: url("font/HipPocket.otf");
+}
+</style>
+</head>
+
+<body>
+<header>
+    <a href="index.html"><img src="img/logo.png" alt="LOGO"> </a>
+  <ul>
+    <li><a href="characters.html">Персонажи</a></li>
+    <li><a href="#">Истории</a></li>
+    <li><a href="#">Регионы</a></li>
+    <li><a href="#">Виды</a></li>
+    <li><a href="#">О вселенной</a></li>
+    <li><a href="#">О нас</a></li>
+  </ul>
+  <a href="like.html"><button id="toggle-cart" class="button">Избранное</button></a>
+</header>
+
+<section class="character-container">
+
+  <section class="character-container">
+    <div class="character-header">
+      <a href="characters.html" class="back-button">
+        <span class="back-icon">←</span>
+      </a>
+      <h2 class="character-title">КЛОТО</h2>
+      <button class="favorite-large">
+        <svg viewBox="0 0 24 24" class="star-icon">
+          <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2" />
+        </svg>
+      </button>
+      
+    </div>
+    
+  
+    <div class="character-content">
+      <div class="character-left">
+        <img src="img/pers.png" alt="Клото">
+      </div>
+    
+      <div class="character-center">
+        <div class="info-block">
+          <h3>Характеристики</h3>
+          <ul>
+            <li>Возраст: 6000</li>
+            <li>Пол: неопределен</li>
+            <li>Рост: 175 см</li>
+            <li>Вес: 45 кг</li>
+            <li>Вид: Творец</li>
+            <li>Происхождение: Кин</li>
+            <li>Находится: О’Сьестен</li>
+            <li>Деятельность: врач</li>
+            <li>Автор: BlackCube</li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="character-right">
+        <div class="info-block">
+          <h3>Реплики</h3>
+          <ul>
+            <li>Приветствие: Привет, я могу тебе чем-нибудь помочь?</li>
+            <li>Извинения: Ох, мне так жаль!</li>
+            <li>Забота: Ты не замерз? Голоден? Давай я приготовлю что-нибудь!</li>
+            <li>Реплика 4: бла бла бла</li>
+            <li>Реплика 5: бла бла бла</li>
+          </ul>
+        </div>
+    
+        <div class="info-block">
+          <h3>Отношения</h3>
+          <ul>
+            <li>Семья: Змей, Киция, Руф</li>
+            <li>Друзья: Джесси Де-Фокс, Виллем</li>
+            <li>Враги: Демон</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
+
+  <div class="bio-section">
+    <h2>Биография</h2>
+    <p>Описание, описание, описание, описание Описание, описание...</p>
+    <img src="img/region_1.png" alt="Место">
+  </div>
+</section>
+
+<section class="gallery-section">
+  <h2 class="gallery-title">ИЗОБРАЖЕНИЯ</h2>
+  
+  <div class="gallery-wrapper">
+    <button class="gallery-nav prev">❮</button>
+    <div class="gallery-slider">
+      <img src="img/pers_1.png" alt="Изображение 1" class="gallery-image active">
+      <img src="img/pers_2.png" alt="Изображение 2" class="gallery-image">
+      <img src="img/pers_3.png" alt="Изображение 3" class="gallery-image">
+      <img src="img/pers_4.png" alt="Изображение 4" class="gallery-image">
+      <!-- ещё изображения по желанию -->
+    </div>
+    <button class="gallery-nav next">❯</button>
+  </div>
+
+  <div class="gallery-dots"></div>
+</section>
+
+
+
+<footer class="textcols">
+  <div class="textcols-left" style="margin-top: 30px">
+    <p>Сайт разработан:<br>
+      Калинкиной Александрой<br>
+      Волик Алисой<br>
+      Петрушиной Евгенией</p>
+  </div>
+  <div class="textcols-middle" style="margin-top: 30px">
+    <p><img src="img/YouTube.png" alt="Изображение"> <img src="img/Tumblr.png" alt="Изображение"> <img src="img/X.png" alt="Изображение"> <img src="img/Telegram App.png" alt="Изображение"> <img src="img/Discord New.png" alt="Изображение"></p>
+    <p>*Meta признана экстремистской организацией в России</p>
+  </div>
+  <div class="textcols-right" style="margin-top: 30px; text-align: right">
+    <p>Авторы QIN Universe:<br>
+      BlackCube<br>
+      ReGulus<br>
+      pickle</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector(".favorite-large");
+
+    button.addEventListener("click", () => {
+      button.classList.toggle("active");
+    });
+  });
+
+  const images = document.querySelectorAll(".gallery-image");
+  const slider = document.querySelector(".gallery-slider");
+  const dotsContainer = document.querySelector(".gallery-dots");
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    currentIndex = index;
+
+    // Обновление точек
+    document.querySelectorAll(".gallery-dot").forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
+  }
+
+  function createDots() {
+    images.forEach((_, index) => {
+      const dot = document.createElement("span");
+      dot.classList.add("gallery-dot");
+      if (index === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => showSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  document.querySelector(".gallery-nav.prev").addEventListener("click", () => {
+    showSlide((currentIndex - 1 + images.length) % images.length);
+  });
+
+  document.querySelector(".gallery-nav.next").addEventListener("click", () => {
+    showSlide((currentIndex + 1) % images.length);
+  });
+
+  createDots();
+</script>
+
+</body>
+</html>
