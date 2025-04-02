@@ -13,12 +13,16 @@
     font-family: InriaSans;
     src: url("font/InriaSans-Regular.ttf");
 }
+@font-face {
+    font-family: HipPocket;
+    src: url("font/HipPocket.otf");
+}
 </style>
 </head>
 
 <body>
 <header>
-  <p><img src="img/logo.png" alt="LOGO"> </p>
+    <a href="index.html"><img src="img/logo.png" alt="LOGO"> </a>
   <ul>
     <li><a href="characters.html">Персонажи</a></li>
     <li><a href="#">Истории</a></li>
@@ -30,7 +34,7 @@
   <a href="like.html"><button id="toggle-cart" class="button">Избранное</button></a>
 </header>
 <section id="start">
-  <p>QIN Universe – проект, где каждый персонаж имеет свою историю. Множество регионов
+  <p><strong>QIN UNIVERSE</strong> – проект, где каждый персонаж имеет свою историю. Множество регионов
     с уникальными связями, а сюжет соединяет между собой звенья. <br><br>
 	Данный сайт собирает в себе всю информацию
     о каждом мире, персонаже, регионе или истории. Данная работа коллективное творчества многих людей и собрала в себе. </p>
@@ -53,6 +57,28 @@
   <h2>РЕГИОНЫ</h2>
   <div id="region-items"></div>
 </section>
+
+<section id="contact-form">
+    <h2 class="contact-title">ОБРАТНАЯ СВЯЗЬ</h2>
+    <div class="contact-wrapper">
+      <form class="contact-left">
+        <label>Имя</label>
+        <input type="text" name="name" placeholder="Александр" required>
+        
+        <label>Почта</label>
+        <input type="email" name="email" placeholder="Aleksandr@gmail.com" required>
+        
+        <label>Ваше сообщение</label>
+        <textarea name="message" placeholder="Мне очень нравится этот проект!!!" required></textarea>
+      </form>
+      
+      <div class="contact-right">
+        <p><strong>QIN UNIVERSE</strong> — проект, построенных на людях и их отдаче, так что нам будет приятно услышать ваше мнение, предложения и идеи!</p>
+      </div>
+    </div>
+  </section>
+  
+
 <footer class="textcols">
   <div class="textcols-left" style="margin-top: 30px">
     <p>Сайт разработан:<br>
