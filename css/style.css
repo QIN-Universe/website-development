@@ -33,7 +33,7 @@ ul li a:hover {
   text-decoration: none;
 }
 #toggle-cart {
-  margin-left: 200px;
+  margin-left: 50px;
 }
 header button {
   width: 180px;
@@ -338,4 +338,46 @@ footer img {
   font-family: HipPocket, sans-serif;
   font-size: 24px;
   color: #795CC6;
+}
+
+
+#btn-send{
+  width: 450px;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  transition-duration: 0.4s;
+  font-family: InriaSans, sans-serif;
+  font-size: 16px;
+  color: #F8EEE5;
+  background-color: #795CC6;
+}
+#btn-send:hover {
+  background-color: #FFFFFF;
+  border: 2px solid #795CC6;
+  color: #795CC6;
+}
+
+.profile-button {
+  border: none;
+  cursor: pointer;
+  margin-left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #795CC6;
+  color: #FFFFFF;
+  transition: background-color 0.3s;
+}
+
+.profile-button:hover {
+  background-color: #FFFFFF;
+  border: 2px solid #795CC6;
+  color: #795CC6;
+}
+
+.profile-button svg {
+  padding-top: 2px;
+  width: 24px;
+  height: 24px;
 }
