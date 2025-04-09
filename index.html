@@ -32,6 +32,13 @@
     <li><a href="#">О нас</a></li>
   </ul>
   <a href="like.html"><button id="toggle-cart" class="button">Избранное</button></a>
+
+  <a href="login.html"><button class="profile-button" aria-label="Личный кабинет">
+    <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5Zm0 12c4.418 0 8 2.239 8 5v2H4v-2c0-2.761 3.582-5 8-5Z"/>
+    </svg>
+  </button></a>
+
 </header>
 <section id="start">
   <p><strong>QIN UNIVERSE</strong> – проект, где каждый персонаж имеет свою историю. Множество регионов
@@ -70,7 +77,7 @@
         
         <label>Ваше сообщение</label>
         <textarea name="message" placeholder="Мне очень нравится этот проект!!!" required></textarea>
-        <button>Отправить</button>
+        <button id="btn-send">Отправить</button>
       </form>
       
       <div class="contact-right">
