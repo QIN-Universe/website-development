@@ -18,7 +18,7 @@
 
 <body>
 <header>
-  <p><img src="img/logo.png" alt="LOGO"> </p>
+  <a href="index.html"><img src="img/logo.png" alt="LOGO"> </a>
   <ul>
     <li><a href="#">Персонажи</a></li>
     <li><a href="#">Истории</a></li>
@@ -98,9 +98,11 @@ const supabaseUrl = "https://lwrcymzsfwgglbvlkdjs.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmN5bXpzZndnZ2xidmxrZGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1NDg2OTAsImV4cCI6MjA1ODEyNDY5MH0.SPytA4M5Fz61U2c9BIupVNAVNoPuZfYYALNrvZYJzb4";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+
 let allCharacters = [];
 let showOnlyLiked = false;
-let likedIds = new Set(JSON.parse(localStorage.getItem('likedCharacters') || '[]'));
+let likedIds = new Set();
+let currentUser = null;
 
 async function fetchCharacters() {
   const { data, error } = await supabase
@@ -139,8 +141,48 @@ async function fetchCharacters() {
       return true;
     });
 
-  localStorage.setItem('likedCharacters', JSON.stringify([...likedIds]));
-      populateMenu();
+  await fetchFavorites();
+  populateMenu();
+}
+
+async function fetchFavorites() {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+  currentUser = user;
+
+  const { data, error } = await supabase
+    .from("избранное")
+    .select("объект_id")
+    .eq("тип", "персонаж")
+    .eq("user_id", user.id);
+
+  if (!error) {
+    likedIds = new Set(data.map(f => f.объект_id));
+  }
+}
+
+async function toggleFavorite(id, starPath) {
+  if (!currentUser) {
+    alert("Войдите, чтобы использовать избранное");
+    return;
+  }
+
+  const isLiked = likedIds.has(id);
+  if (isLiked) {
+    await supabase
+      .from("избранное")
+      .delete()
+      .eq("тип", "персонаж")
+      .eq("объект_id", id)
+      .eq("user_id", currentUser.id);
+    likedIds.delete(id);
+    starPath.setAttribute("fill", "none");
+  } else {
+    await supabase.from("избранное").insert([{ тип: "персонаж", объект_id: id, user_id: currentUser.id }]);
+    likedIds.add(id);
+    starPath.setAttribute("fill", "#795CC6");
+  }
+
 }
 
 function populateMenu() {
@@ -169,25 +211,19 @@ function populateMenu() {
     itemDiv.innerHTML = `
       <button class="favorite-btn" data-id="${item.id}">
         <svg class="star-icon" viewBox="0 0 24 24">
-          <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" 
+          <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"
             fill="${isLiked ? '#795CC6' : 'none'}" stroke="#795CC6" stroke-width="2"/>
         </svg>
       </button>
       <img src="${item.image}" alt="${item.name}">
-      <div class="rectangle" style="height: 50px;width: 300px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
+      <div class="rectangle" style="height: 50px;width: 300px;background-color: #795CC6; border-radius: 0px 0px 60px 60px; margin-top:-60px;">
         <p style="margin-top:10px;margin-left:30px;">${item.name}</p>
       </div>
     `;
+    const button = itemDiv.querySelector(".favorite-btn");
+    const path = button.querySelector("path");
+    button.addEventListener("click", () => toggleFavorite(item.id, path));
     menuDiv.appendChild(itemDiv);
-  });
-
-  document.querySelectorAll('.favorite-btn').forEach(button => {
-    button.addEventListener('click', () => {
-      const id = parseInt(button.getAttribute('data-id'));
-      likedIds.has(id) ? likedIds.delete(id) : likedIds.add(id);
-      localStorage.setItem('likedCharacters', JSON.stringify([...likedIds]));
-      populateMenu();
-    });
   });
 }
 
@@ -218,8 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showOnlyLiked = !showOnlyLiked;
     const star = document.querySelector('#filter-like .star-icon path');
     star.setAttribute('fill', showOnlyLiked ? '#FFFFFF' : 'none');
-    localStorage.setItem('likedCharacters', JSON.stringify([...likedIds]));
-      populateMenu();
+    populateMenu();
   });
 
   loadFilterOptions("вид", "название_расы", "filter-race");
@@ -228,6 +263,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetchCharacters();
 });
+
+
 </script>
+
 </body>
 </html>
