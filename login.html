@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход в QIN Universe</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 300px;
+    }
+    button {
+      background-color: #795CC6;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Авторизация QIN Universe</h1>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email" required><br>
+    <input type="password" id="password" placeholder="Пароль" required><br>
+    <button type="submit">Войти</button>
+  </form>
+  
+  <a href="signup.html" class="link-button">Нет аккаунта? Зарегистрироваться</a><br>
+  <a href="index.html" class="link-button">← На главную</a>
+  <div class="message" id="message"></div>
+
+  <script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const supabaseUrl = "https://lwrcymzsfwgglbvlkdjs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmN5bXpzZndnZ2xidmxrZGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1NDg2OTAsImV4cCI6MjA1ODEyNDY5MH0.SPytA4M5Fz61U2c9BIupVNAVNoPuZfYYALNrvZYJzb4";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const msg = document.getElementById("message");
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        msg.textContent = "Ошибка: " + error.message;
+        msg.style.color = "red";
+      } else {
+        msg.textContent = "Добро пожаловать, " + data.user.email;
+        msg.style.color = "green";
+      }
+    });
+
+    // Проверка, авторизован ли пользователь
+    (async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        document.getElementById("message").textContent = "Вы уже вошли как: " + user.email;
+      }
+    })();
+  </script>
+</body>
+</html>
