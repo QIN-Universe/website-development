@@ -13,24 +13,35 @@
     font-family: InriaSans;
     src: url("font/InriaSans-Regular.ttf");
 }
+@font-face {
+    font-family: HipPocket;
+    src: url("font/HipPocket.otf");
+}
 </style>
 </head>
 
 <body>
 <header>
-  <p><img src="img/logo.png" alt="LOGO"> </p>
+    <a href="login.html"><img src="img/logo.png" alt="LOGO"> </a>
   <ul>
-    <li><a href="#">Персонажи</a></li>
+    <li><a href="characters.html">Персонажи</a></li>
     <li><a href="#">Истории</a></li>
     <li><a href="#">Регионы</a></li>
     <li><a href="#">Виды</a></li>
     <li><a href="#">О вселенной</a></li>
     <li><a href="#">О нас</a></li>
   </ul>
-  <button id="toggle-cart" class="button">Избранное</button>
+  <a href="like.html"><button id="toggle-cart" class="button">Избранное</button></a>
+
+  <a href="login.html"><button class="profile-button" aria-label="Личный кабинет">
+    <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5Zm0 12c4.418 0 8 2.239 8 5v2H4v-2c0-2.761 3.582-5 8-5Z"/>
+    </svg>
+  </button></a>
+
 </header>
 <section id="start">
-  <p>QIN Universe – проект, где каждый персонаж имеет свою историю. Множество регионов
+  <p><strong>QIN UNIVERSE</strong> – проект, где каждый персонаж имеет свою историю. Множество регионов
     с уникальными связями, а сюжет соединяет между собой звенья. <br><br>
 	Данный сайт собирает в себе всю информацию
     о каждом мире, персонаже, регионе или истории. Данная работа коллективное творчества многих людей и собрала в себе. </p>
@@ -43,31 +54,48 @@
 </section>
 <section id="menu">
   <h2>ПЕРСОНАЖИ</h2>
-  <div id="menu-items"> 
-    <!-- Menu items in Script --> 
-  </div>
+  <div id="menu-items"></div>
 </section>
 <section id="race">
   <h2>ВИДЫ</h2>
-  <div id="race-items"> 
-    <!-- Menu items in Script --> 
-  </div>
+  <div id="race-items"></div>
 </section>
 <section id="region">
   <h2>РЕГИОНЫ</h2>
-  <div id="region-items"> 
-    <!-- Menu items in Script --> 
-  </div>
+  <div id="region-items"></div>
 </section>
+
+<section id="contact-form">
+    <h2 class="contact-title">ОБРАТНАЯ СВЯЗЬ</h2>
+    <div class="contact-wrapper">
+      <form id="feedback-form" class="contact-left">
+        <label>Имя</label>
+        <input type="text" name="name" placeholder="Александр" required>
+        
+        <label>Почта</label>
+        <input type="email" name="email" placeholder="Aleksandr@gmail.com" required>
+        
+        <label>Ваше сообщение</label>
+        <textarea name="message" placeholder="Мне очень нравится этот проект!!!" required></textarea>
+        <button id="btn-send">Отправить</button>
+      </form>
+      
+      <div class="contact-right">
+        <p><strong>QIN UNIVERSE</strong> — проект, построенных на людях и их отдаче, так что нам будет приятно услышать ваше мнение, предложения и идеи!</p>
+      </div>
+    </div>
+  </section>
+  
+
 <footer class="textcols">
   <div class="textcols-left" style="margin-top: 30px">
-    <p style="">Сайт разработан:<br>
+    <p>Сайт разработан:<br>
       Калинкиной Александрой<br>
       Волик Алисой<br>
       Петрушиной Евгенией</p>
   </div>
   <div class="textcols-middle" style="margin-top: 30px">
-    <p><img src="img/YouTube.png" alt="Изображение"> <img src="img/Tumblr.png" alt="Изображение" style=""> <img src="img/X.png" alt="Изображение" style=""> <img src="img/Telegram App.png" alt="Изображение" style=""> <img src="img/Discord New.png" alt="Изображение" style=""> </p>
+    <p><img src="img/YouTube.png" alt="Изображение"> <img src="img/Tumblr.png" alt="Изображение"> <img src="img/X.png" alt="Изображение"> <img src="img/Telegram App.png" alt="Изображение"> <img src="img/Discord New.png" alt="Изображение"></p>
     <p>*Meta признана экстремистской организацией в России</p>
   </div>
   <div class="textcols-right" style="margin-top: 30px; text-align: right">
@@ -77,206 +105,179 @@
       pickle</p>
   </div>
 </footer>
-<script>
-const menuItems = [
-    {
-        id: 1,
-        name: "AВОН",
-        image: "img/pers_1.png",
-		link: "#"
-    },
-    {
-        id: 2,
-        name: "Рудольф Магнуссен",
-        image: "img/pers_2.png",
-		link: "#"
-    },
-    {
-        id: 3,
-        name: "Йохан Утенберг",
-        image: "img/pers_3.png",
-		link: "#"
-    },
-	{
-        id: 4,
-        name: "Джесси Де-Фокс",
-        image: "img/pers_4.png",
-		link: "#"
-    }
-];
 
-function populateMenu() {
-    const menuDiv = document.getElementById('menu-items');
-    menuItems.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'menu-item';
-        itemDiv.innerHTML = `
-            <button class="favorite-btn">
-                <svg class="star-icon" viewBox="0 0 24 24">
-                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
-                </svg>
-            </button>
-            <img src="${item.image}" alt="${item.name}">
-<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
-<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
-	</div>
-        `;
-        menuDiv.appendChild(itemDiv);
-    });
-	
-    const viewAllLink = document.createElement('a');
-    viewAllLink.href = "all-characters.html";
-    viewAllLink.className = "view-all";
-    viewAllLink.textContent = "Смотреть все";
-    menuDiv.appendChild(viewAllLink);
-	
-	document.querySelectorAll('.favorite-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            const star = this.querySelector('.star-icon path');
-            if (star.getAttribute("fill") === "none") {
-                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
-            } else {
-                star.setAttribute("fill", "none"); // Очищаем звездочку
-            }
-        });
-    });
-	
-}       
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	const raceItems = [
-    {
-        id: 1,
-        name: "AВОН",
-        image: "img/pers_1.png",
-		link: "#"
-    },
-    {
-        id: 2,
-        name: "Рудольф Магнуссен",
-        image: "img/pers_2.png",
-		link: "#"
-    },
-    {
-        id: 3,
-        name: "Йохан Утенберг",
-        image: "img/pers_3.png",
-		link: "#"
-    },
-	{
-        id: 4,
-        name: "Джесси Де-Фокс",
-        image: "img/pers_4.png",
-		link: "#"
-    }
-];
 
-function populateRace() {
-    const raceDiv = document.getElementById('race-items');
-    raceItems.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'menu-item';
-        itemDiv.innerHTML = `
-            <button class="favorite-btn">
-                <svg class="star-icon" viewBox="0 0 24 24">
-                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
-                </svg>
-            </button>
-            <img src="${item.image}" alt="${item.name}">
-<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
-<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
-	</div>
-        `;
-        raceDiv.appendChild(itemDiv);
-    });
-	
-    const viewAllLink = document.createElement('a');
-    viewAllLink.href = "all-races.html";
-    viewAllLink.className = "view-all";
-    viewAllLink.textContent = "Смотреть все";
-    raceDiv.appendChild(viewAllLink);
-	
-		document.querySelectorAll('.favorite-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            const star = this.querySelector('.star-icon path');
-            if (star.getAttribute("fill") === "none") {
-                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
-            } else {
-                star.setAttribute("fill", "none"); // Очищаем звездочку
-            }
-        });
-    });
-}       
-	
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	const regionItems = [
-    {
-        id: 1,
-        name: "AВОН",
-        image: "img/region_1.png",
-		link: "#"
-    },
-    {
-        id: 2,
-        name: "Рудольф Магнуссен",
-        image: "img/region_1.png",
-		link: "#"
-    },
-    {
-        id: 3,
-        name: "Йохан Утенберг",
-        image: "img/region_1.png",
-		link: "#"
-    },
-	{
-        id: 4,
-        name: "Джесси Де-Фокс",
-        image: "img/region_1.png",
-		link: "#"
-    }
-];
 
-function populateRegion() {
-    const regionDiv = document.getElementById('region-items');
-    regionItems.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'menu-item';
-        itemDiv.innerHTML = `
-            <button class="favorite-btn">
-                <svg class="star-icon" viewBox="0 0 24 24">
-                    <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="none" stroke="#795CC6" stroke-width="2"/>
-                </svg>
-            </button>
-            <img src="${item.image}" alt="${item.name}">
-<div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;  border-radius: 0px 0px 60px 60px; margin-top:-60px;">
-<p style="margin-top:10px;margin-left:30px;" >${item.name}</p>
-	</div>
-        `;
-        regionDiv.appendChild(itemDiv);
+
+
+
+
+
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const supabaseUrl = "https://lwrcymzsfwgglbvlkdjs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmN5bXpzZndnZ2xidmxrZGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1NDg2OTAsImV4cCI6MjA1ODEyNDY5MH0.SPytA4M5Fz61U2c9BIupVNAVNoPuZfYYALNrvZYJzb4";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+let currentUser = null;
+let favorites = [];
+
+async function fetchUser() {
+  const { data, error } = await supabase.auth.getUser();
+  if (data?.user) {
+    currentUser = data.user;
+    await loadFavorites();
+  }
+}
+
+async function loadFavorites() {
+  const { data, error } = await supabase
+    .from("избранное")
+    .select("тип, объект_id")
+    .eq("user_id", currentUser.id);
+
+  if (!error) {
+    favorites = data;
+  }
+}
+
+function isFavorite(type, id) {
+  return favorites.some(fav => fav.тип === type && fav.объект_id === id);
+}
+
+async function toggleFavorite(type, id, starPath) {
+  if (!currentUser) return alert("Войдите, чтобы использовать избранное!");
+
+  const isFav = isFavorite(type, id);
+
+  if (isFav) {
+    await supabase
+      .from("избранное")
+      .delete()
+      .eq("user_id", currentUser.id)
+      .eq("тип", type)
+      .eq("объект_id", id);
+    favorites = favorites.filter(f => !(f.тип === type && f.объект_id === id));
+    starPath.setAttribute("fill", "none");
+  } else {
+    await supabase.from("избранное").insert([
+      {
+        user_id: currentUser.id,
+        тип: type,
+        объект_id: id,
+      },
+    ]);
+    favorites.push({ тип: type, объект_id: id });
+    starPath.setAttribute("fill", "#795CC6");
+  }
+}
+
+function createCard(name, image, id, type) {
+  const isFav = isFavorite(type, id);
+  return `
+    <div class="menu-item" data-id="${id}" data-type="${type}">
+      <button class="favorite-btn">
+        <svg class="star-icon" viewBox="0 0 24 24">
+          <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"
+            fill="${isFav ? "#795CC6" : "none"}" stroke="#795CC6" stroke-width="2"/>
+        </svg>
+      </button>
+      <img src="${image}" alt="${name}">
+      <div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6; border-radius: 0px 0px 60px 60px; margin-top:-60px;">
+        <p style="margin-top:10px;margin-left:30px;">${name}</p>
+      </div>
+    </div>
+  `;
+}
+
+async function populateSection(table, nameField, imageField, idField, type, containerId, linkHref) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  const { data, error } = await supabase.from(table).select();
+
+  if (error) {
+    console.error(`Ошибка загрузки ${type}:`, error);
+    return;
+  }
+
+  data.forEach(item => {
+    container.insertAdjacentHTML(
+      "beforeend",
+      createCard(item[nameField], item[imageField], item[idField], type)
+    );
+  });
+
+  const viewAllLink = document.createElement("a");
+  viewAllLink.href = linkHref;
+  viewAllLink.className = "view-all";
+  viewAllLink.textContent = "Смотреть все";
+  container.appendChild(viewAllLink);
+
+  container.querySelectorAll(".favorite-btn").forEach(btn => {
+    btn.addEventListener("click", async function () {
+      const item = this.closest(".menu-item");
+      const id = parseInt(item.dataset.id);
+      const type = item.dataset.type;
+      const star = this.querySelector("path");
+      await toggleFavorite(type, id, star);
     });
-	
-    const viewAllLink = document.createElement('a');
-    viewAllLink.href = "all-characters.html";
-    viewAllLink.className = "view-all";
-    viewAllLink.textContent = "Смотреть все";
-    regionDiv.appendChild(viewAllLink);
-	
-		document.querySelectorAll('.favorite-btn').forEach(button => {
-        button.addEventListener('click', function () {
-            const star = this.querySelector('.star-icon path');
-            if (star.getAttribute("fill") === "none") {
-                star.setAttribute("fill", "#795CC6"); // Закрашиваем звездочку
-            } else {
-                star.setAttribute("fill", "none"); // Очищаем звездочку
-            }
-        });
-    });
-}       
-      // Populate region on page load
-window.addEventListener('load', populateMenu );
-window.addEventListener('load', populateRace );
-window.addEventListener('load', populateRegion );
-	
-    </script>
+  });
+}
+
+window.addEventListener("load", async () => {
+  await fetchUser();
+
+  await populateSection("персонаж", "имя", "изображение", "код_персонажа", "персонаж", "menu-items", "all-characters.html");
+  await populateSection("вид", "название_расы", "изображение", "код_вида", "вид", "race-items", "all-races.html");
+  await populateSection("регион", "название_региона", "изображение", "код_региона", "регион", "region-items", "all-regions.html");
+});
+
+
+
+
+
+const form = document.getElementById("feedback-form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const feedback = Object.fromEntries(formData.entries());
+
+  const { error } = await supabase.from("feedback").insert([feedback]);
+
+  if (error) {
+    alert("Ошибка при отправке сообщения");
+    console.error(error);
+  } else {
+    alert("Спасибо за сообщение!");
+    form.reset();
+  }
+});
+
+function toggleLike(type, name, starElement) {
+  let key = {
+    персонаж: 'likedCharacters',
+    вид: 'likedRaces',
+    регион: 'likedRegions'
+  }[type];
+
+  let liked = JSON.parse(localStorage.getItem(key) || '[]');
+  const isLiked = liked.includes(name);
+
+  if (isLiked) {
+    liked = liked.filter(i => i !== name);
+    starElement.setAttribute("fill", "none");
+  } else {
+    liked.push(name);
+    starElement.setAttribute("fill", "#795CC6");
+  }
+
+  localStorage.setItem(key, JSON.stringify(liked));
+}
+</script>
+
 </body>
 </html>

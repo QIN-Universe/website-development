@@ -11,6 +11,7 @@ header {
   flex-wrap: wrap;
   align-items: center;
   background-color: #362082;
+  padding: 20px 70px;
 }
 ul {
   margin-left: -50px;
@@ -32,7 +33,7 @@ ul li a:hover {
   text-decoration: none;
 }
 #toggle-cart {
-  margin-left: 300px;
+  margin-left: 50px;
 }
 header button {
   width: 180px;
@@ -210,4 +211,28 @@ footer p {
 }
 footer img {
   width: 60px;
+}
+
+.profile-button {
+  border: none;
+  cursor: pointer;
+  margin-left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #795CC6;
+  color: #FFFFFF;
+  transition: background-color 0.3s;
+}
+
+.profile-button:hover {
+  background-color: #FFFFFF;
+  border: 2px solid #795CC6;
+  color: #795CC6;
+}
+
+.profile-button svg {
+  padding-top: 2px;
+  width: 24px;
+  height: 24px;
 }

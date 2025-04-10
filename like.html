@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Избранное | QIN Universe</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style_like.css">
   <style>
     @font-face {
       font-family: Soledago;
@@ -17,7 +17,7 @@
 </head>
 <body>
 <header>
-  <p><img src="img/logo.png" alt="LOGO"></p>
+  <a href="index.html"><img src="img/logo.png" alt="LOGO"> </a>
   <ul>
     <li><a href="characters.html">Персонажи</a></li>
     <li><a href="#">Истории</a></li>
@@ -27,9 +27,21 @@
     <li><a href="#">О нас</a></li>
   </ul>
   <a href="like.html"><button id="toggle-cart" class="button">Избранное</button></a>
+  <a href="login.html"><button class="profile-button" aria-label="Личный кабинет">
+    <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5Zm0 12c4.418 0 8 2.239 8 5v2H4v-2c0-2.761 3.582-5 8-5Z"/>
+    </svg>
+  </button></a>
+
 </header>
 
-<h2 class="title">ИЗБРАННОЕ</h2>
+<div class="favorite-header">
+<svg class="header-star" viewBox="0 0 24 24">
+  <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"
+        fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2"/>
+</svg>
+<h2>ИЗБРАННОЕ</h2>
+</div>
 
 <section id="favorites">
   <h3>Персонажи</h3>
@@ -71,50 +83,75 @@ const supabaseUrl = 'https://lwrcymzsfwgglbvlkdjs.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmN5bXpzZndnZ2xidmxrZGpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1NDg2OTAsImV4cCI6MjA1ODEyNDY5MH0.SPytA4M5Fz61U2c9BIupVNAVNoPuZfYYALNrvZYJzb4';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const favorites = {
-  персонажи: JSON.parse(localStorage.getItem('likedCharacters') || '[]'),
-  регионы: JSON.parse(localStorage.getItem('likedRegions') || '[]'),
-  статьи: JSON.parse(localStorage.getItem('likedArticles') || '[]')
-};
-
 function createCard(name, image) {
   return `
     <div class="menu-item">
+            <button class="favorite-btn">
+        <svg class="star-icon" viewBox="0 0 24 24">
+          <path d="M12 2L15 9h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"
+            fill="${isFav ? "#795CC6" : "none"}" stroke="#795CC6" stroke-width="2"/>
+        </svg>
+      </button>
       <img src="${image || 'https://via.placeholder.com/300x400'}" alt="${name}">
-      <div class="rectangle" style="height: 50px;width: 350px;background-color: #795CC6;border-radius: 0px 0px 60px 60px;margin-top:-60px;">
+      <div class="rectangle" style="height: 50px;width: 300px;background-color: #795CC6;border-radius: 0px 0px 60px 60px;margin-top:-60px;">
         <p style="margin-top:10px;margin-left:30px;">${name}</p>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
 async function loadFavorites() {
   const charContainer = document.getElementById("menu-items");
   const regContainer = document.getElementById("favorite-regions");
-  const artContainer = document.getElementById("favorite-articles");
-  const empty = document.getElementById("empty-message");
+  const raceContainer = document.getElementById("favorite-articles"); // Временно как статьи
 
-  let hasData = false;
+  const emptyMessages = document.querySelectorAll("#empty-message");
 
-  if (favorites.персонажи.length > 0) {
-    const { data } = await supabase.from('персонаж').select('*').in('код_персонажа', favorites.персонажи);
-    data.forEach(c => charContainer.innerHTML += createCard(c.имя, c.изображение));
-    hasData = true;
+  // Проверка авторизации
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    charContainer.innerHTML = "<p>Пожалуйста, войдите в аккаунт.</p>";
+    return;
   }
 
-  if (favorites.регионы.length > 0) {
-    const { data } = await supabase.from('регион').select('*').in('код_региона', favorites.регионы);
-    data.forEach(r => regContainer.innerHTML += createCard(r.название_региона, r.изображение));
-    hasData = true;
+  const { data: favorites, error } = await supabase
+    .from("избранное")
+    .select("тип, объект_id")
+    .eq("user_id", user.id);
+
+  if (error) {
+    console.error("Ошибка при загрузке избранного:", error.message);
+    return;
   }
 
-  if (favorites.статьи.length > 0) {
-    const { data } = await supabase.from('статья').select('*').in('код_статьи', favorites.статьи);
-    data.forEach(a => artContainer.innerHTML += createCard(a.название, a.изображение));
-    hasData = true;
+  let hasContent = false;
+
+  async function fetchAndRender(type, table, nameField, imageField, keyField, container) {
+    const ids = favorites
+      .filter(f => f.тип === type)
+      .map(f => f.объект_id);
+
+    if (ids.length === 0) return;
+
+    const { data, error } = await supabase
+      .from(table)
+      .select(`${keyField}, ${nameField}, ${imageField}`)
+      .in(keyField, ids);
+
+    if (!error && data.length > 0) {
+      data.forEach(item => {
+        container.innerHTML += createCard(item[nameField], item[imageField]);
+      });
+      hasContent = true;
+    }
   }
 
-  if (hasData) empty.style.display = 'none';
+  await fetchAndRender("персонаж", "персонаж", "имя", "изображение", "код_персонажа", charContainer);
+  await fetchAndRender("регион", "регион", "название_региона", "изображение", "код_региона", regContainer);
+  await fetchAndRender("вид", "вид", "название_расы", "изображение", "код_вида", raceContainer);
+
+  if (hasContent) {
+    emptyMessages.forEach(el => el.style.display = 'none');
+  }
 }
 
 window.addEventListener("DOMContentLoaded", loadFavorites);
